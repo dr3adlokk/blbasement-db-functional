@@ -1,3 +1,3 @@
 module.exports = {
-    api: require ('./restapi')
+    api: require ('./html-render')
 }

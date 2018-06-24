@@ -2,7 +2,13 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const mongoose = require('mongoose')
 
+
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 
 if(process.env.NODE_env == 'production'){
