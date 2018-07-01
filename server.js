@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const remoteDB = require ('./config/keys');
+
 
 
 const bodyParser = require('body-parser')
@@ -11,11 +13,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 
+
 if(process.env.NODE_env == 'production'){
+  mongoose.connect('mongodb://dude:dude6023@ds163330.mlab.com:63330/project3-remote')
  app.use(express.static("client/build"));
 }
 else {
-//   mongoose.connect('mongodb://localhost/blbasement')
+  mongoose.connect('mongodb://localhost/blbasement')
 // }
  app.use(express.static("client/public"));
 }
@@ -53,5 +57,5 @@ app.get("*", function(req, res) {
 });
 
 app.listen(PORT, function() {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+  console.log(`🌎 ==> Served to  ${PORT}!`);
 });
